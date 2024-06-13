@@ -1,0 +1,95 @@
+<div class="container px-4 py-5" id="custom-cards">
+    <h2 class="pb-2 border-bottom">Custom cards</h2>
+
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+   
+      <div class="col-lg-6 co-sm-10 ">
+      
+        <div class="card card-cover h-500 overflow-hidden text-white bg-dark rounded-5" style="background-image: url('https://a0.muscache.com/im/pictures/74fc010b-e809-42ff-a1ee-d58bc4cfd202.jpg?im_w=960');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                <small></small>
+              </li>
+              <li class="d-flex align-items-center">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                <small>3d</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <h6 class="pt-1 mt-1 mb-4 display-12 lh-1 fw-bold">Short title, long jacket</h6>
+      </div>
+   
+
+      </div>
+ <div class="row">
+  <% @property.each do |q| %>
+    <div class="col-4">
+      <div class="card mb-4 position-relative" style="width: 18rem;">
+        <% if q.images.present? %>
+          <swiper-container class="mySwiper" navigation="true">
+            <% q.images.each do |image| %>
+              <div class="swiper-slide">
+                <div class="position-relative">  <svg data-controller="wishlist"  data-action="click->wishlist#updateWishlistStatus" data-status="<%=q.wishlisted_by?(current_user)%>" data-user-logged-in="<%=user_signed_in?%>" data-property-id="<%=q.id%>" data-user-id="<%=current_user&.id%>" data-wishlist-id="<%= q.wishlist_id_for(current_user) %>"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="position: absolute; top: 20px; right: 20px; z-index: 10;<% if q.wishlisted_by?(current_user) %>fill: red;<% else %>fill-none;<% end %>; height: 24px; width: 24px; stroke: var(--linaria-theme_palette-icon-primary-inverse); stroke-width: 2; overflow: visible;">
+                   <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"></path>
+              </svg>
+            
+
+                  <%= image_tag(image, class: "img-fluid") %>
+                </div>
+              </div>
+            <% end %>
+          </swiper-container>
+        <% end %>
+        <div class="card-body">
+          <p class="card-text"><%= q.name %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+ <style>
+ .fill-red {
+  fill: red;
+}
+ swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+
+
+  <swiper-container class="mySwiper" navigation="true">
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 4</swiper-slide>
+    <swiper-slide>Slide 5</swiper-slide>
+    <swiper-slide>Slide 6</swiper-slide>
+    <swiper-slide>Slide 7</swiper-slide>
+    <swiper-slide>Slide 8</swiper-slide>
+    <swiper-slide>Slide 9</swiper-slide>
+  </swiper-container>
